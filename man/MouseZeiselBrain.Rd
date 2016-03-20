@@ -16,6 +16,9 @@ gene ID or gene symbols.}
 \usage{
 MouseZeiselBrain
 }
+\value{
+Returns an ExpressionSet object for the sequencing data
+}
 \description{
 A dataset containing single cell RNA-seq data from mouse cortex and hippocampus
 due to Zeisel et al (2015)

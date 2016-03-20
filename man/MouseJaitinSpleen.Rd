@@ -14,6 +14,9 @@ symbols.}
 \usage{
 MouseJaitinSpleen
 }
+\value{
+Returns an ExpressionSet object for the sequencing data
+}
 \description{
 A dataset containing single cell RNA-seq data from mouse spleen due to Jaitin et al (2014)
 }

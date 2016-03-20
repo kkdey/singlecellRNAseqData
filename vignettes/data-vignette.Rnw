@@ -15,8 +15,8 @@
 
 <<knitr, echo=FALSE, results="hide">>=
 library("knitr")
-opts_chunk$set(tidy=FALSE,tidy.opts=list(width.cutoff=30),dev="png",fig.show="hide",
-               fig.width=4,fig.height=7,
+opts_chunk$set(tidy=FALSE,tidy.opts=list(width.cutoff=30),dev="png",
+               fig.show="hide",fig.width=4,fig.height=7,
                message=FALSE)
 @
 
@@ -24,9 +24,13 @@ opts_chunk$set(tidy=FALSE,tidy.opts=list(width.cutoff=30),dev="png",fig.show="hi
 BiocStyle::latex()
 @
 
-\author{Kushal K Dey, Chiaowen Joyce Hsiao \& Matthew Stephens \\[1em] \small{\textit{Stephens Lab}, The University of Chicago} \mbox{ }\\ \small{\texttt{$^*$Correspondending Email: mstephens@uchicago.edu}}}
+\author{Kushal K Dey, Chiaowen Joyce Hsiao \& Matthew Stephens \\[1em]
+\small{\textit{Stephens Lab}, The University of Chicago} \mbox{ }\\
+\small{\texttt{$^*$Correspondending Email: mstephens@uchicago.edu}}}
 
-\bioctitle[Single cell RNA-seq data due to Jaitin et al (2014), Deng et al (2014) and Zeisel et al (2015)]{Single cell RNA-seq data due to Jaitin et al (2014), Deng et al (2014) and Zeisel et al (2015)}
+\bioctitle[Single cell RNA-seq data due to Jaitin et al (2014), Deng et al (2014)
+and Zeisel et al (2015)]{Single cell RNA-seq data due to Jaitin et al (2014),
+Deng et al (2014) and Zeisel et al (2015)}
 
 \begin{document}
 
@@ -34,7 +38,11 @@ BiocStyle::latex()
 
 \begin{abstract}
 \vspace{1em}
- We present three selected single cell RNA-seq data as \textit{ExpressionSet} objects. These datasets include Mouse spleen single cell data due to Jaitin et al 2014 \cite{Jaitin2014}, Mouse embryonic stem cell data due to Deng et al 2014 \cite{Deng2014} and Mouse cortex and hippocampus single cell data due to Zeisel et al 2015 \cite{Zeisel2015}.
+ We present three selected single cell RNA-seq data as \textit{ExpressionSet}
+ objects. These datasets include Mouse spleen single cell data due to Jaitin
+ et al 2014 \cite{Jaitin2014}, Mouse embryonic stem cell data due to Deng et al
+ 2014 \cite{Deng2014} and Mouse cortex and hippocampus single cell data due to
+ Zeisel et al 2015 \cite{Zeisel2015}.
 \vspace{1em}
 \textbf{\singlecellRNAseqData{} version:} \Sexpr{packageDescription("singlecellRNAseqData")$Version} \footnote{This document used the vignette from \Bioconductor{} package \Biocpkg{DESeq2, cellTree, CountClust} as \CRANpkg{knitr} template}
 \end{abstract}
@@ -56,7 +64,8 @@ source("http://bioconductor.org/biocLite.R")
 biocLite("singlecellRNAseqData")
 @ %def
 
-To install the working version from Github, the user needs CRAN package \CRANpkg{devtools}.
+To install the working version from Github, the user needs CRAN package
+\CRANpkg{devtools}.
 
 <<install_github, echo=TRUE, eval=FALSE>>=
 library(devtools)
@@ -69,12 +78,19 @@ To load the package
 library(singlecellRNAseqData)
 @
 
-We now provide a brief summary of the three datasets hosted in this package and how the user can extract different features of the data from the \textit{ExpressionSet} framework in which the data is stored.
+We now provide a brief summary of the three datasets hosted in this package and
+how the user can extract different features of the data from the
+\textit{ExpressionSet} framework in which the data is stored.
 
 \section{Deng et al (2014)}
 
-Deng et al (2014) \cite{Deng2014} collected embryonic stem cell (ESC) data from mouse spanning across several stages of mouse embryo development (zygote, 2 cell, 4 cell, 8 cell, 16 cell,
-early blastocyst, mid blsastocyst and late blastocyst stages). We present the data for a filtered set of $259$ ESCs (after removing SmartSeq and pooled samples) with reads measured across $22431$ genes. The data has been processed from the data publicly available at Gene Expression Omnibus (GEO:GSE45719: see \url{http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE45719})
+Deng et al (2014) \cite{Deng2014} collected embryonic stem cell (ESC) data from
+mouse spanning across several stages of mouse embryo development (zygote, 2 cell,
+4 cell, 8 cell, 16 cell,early blastocyst, mid blsastocyst and late blastocyst
+stages). We present the data for a filtered set of $259$ ESCs (after removing
+SmartSeq and pooled samples) with reads measured across $22431$ genes. The data
+has been processed from the data publicly available at Gene Expression Omnibus
+(GEO:GSE45719: see \url{http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE45719})
 
 <<deng_data, echo=TRUE, eval=TRUE>>=
 data("Deng2014MouseESC")
@@ -89,8 +105,8 @@ exprs <- Biobase::exprs(Deng2014MouseESC)
 head(exprs[,1:5])
 @ %def
 
-The phenotype or metadata on the samples includes the development stage of the cell
-and the embryo ID of the corresponding developing embryo. The development
+The phenotype or metadata on the samples includes the development stage of the
+cell and the embryo ID of the corresponding developing embryo. The development
 stage information can be extracted as follows
 
 <<deng_pdata, echo=TRUE, eval=TRUE>>=
@@ -98,8 +114,8 @@ pdata <- Biobase::pData(Deng2014MouseESC)
 table(pdata$cell_type)
 @ %def
 
-The gene names corresponding to the rows of the expression matrix can be extracted
-as follows
+The gene names corresponding to the rows of the expression matrix can be
+extracted as follows
 
 <<deng_features, echo=TRUE, eval=TRUE>>=
 features <- Biobase::featureNames(Deng2014MouseESC)
@@ -108,8 +124,12 @@ head(features)
 
 \section{Jaitin et al (2014)}
 
-Jaitin et al (2014) \cite{Jaitin2014} collected single cell data from Mouse spleen using several sorting markers, with the purpose of decomposing tissues into cell types. Expression was recorded for $4590$ samples of single cells with reads measured across $20190$ genes. The data
-was processed from the publicly available data at Gene Expression Omnibus (GEO:GSE54006: see \url{http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE54006})
+Jaitin et al (2014) \cite{Jaitin2014} collected single cell data from Mouse
+spleen using several sorting markers, with the purpose of decomposing tissues
+into cell types. Expression was recorded for $4590$ samples of single cells with
+reads measured across $20190$ genes. The data was processed from the publicly
+available data at Gene Expression Omnibus (GEO:GSE54006: see
+\url{http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE54006})
 
 <<jaitin_data, echo=TRUE, eval=TRUE>>=
 data("MouseJaitinSpleen")
@@ -126,15 +146,16 @@ head(exprs[,1:5])
 
 Metadata is available on $15$ features of the samples or single cells,
 including mouse ID, well ID, amplification batch, sequencing batch,
-ERCC features etc. The user can extract the sample metadata of interest as follows.
+ERCC features etc. The user can extract the sample metadata of interest as
+follows.
 
 <<jaitin_pdata, echo=TRUE, eval=TRUE>>=
 pdata <- Biobase::pData(MouseJaitinSpleen)
 head(pdata[,c("amplification_batch","sorting_markers","well_id","ERCC_dilution")])
 @ %def
 
-The gene names corresponding to the rows of the expression matrix can be extracted
-as follows
+The gene names corresponding to the rows of the expression matrix can be
+extracted as follows
 
 <<jaitin_features, echo=TRUE, eval=TRUE>>=
 features <- Biobase::featureNames(MouseJaitinSpleen)
@@ -144,9 +165,12 @@ head(features)
 
 \section{Zeisel et al (2015)}
 
-Zeisel et al (2015) \cite{Zeisel2015} collected single cell data from Mouse cortex and
-hippocampus, with the idea of identifying different cell types. Expression was recorded for $3005$ samples of single cells with reads measured across $19968$ genes. The data
-was processed from the publicly available data at Gene Expression Omnibus (GEO:GSE60361: see \url{http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE60361})
+Zeisel et al (2015) \cite{Zeisel2015} collected single cell data from Mouse
+cortex and hippocampus, with the idea of identifying different cell types.
+Expression was recorded for $3005$ samples of single cells with reads measured
+across $19968$ genes. The data was processed from the publicly available data at
+Gene Expression Omnibus (GEO:GSE60361: see
+\url{http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE60361})
 
 <<zeisel_data, echo=TRUE, eval=TRUE>>=
 data("MouseZeiselBrain")
@@ -170,8 +194,8 @@ pdata <- Biobase::pData(MouseZeiselBrain)
 head(pdata[,c("tissue","sex","age","level1_class","level2_class")])
 @ %def
 
-The gene names corresponding to the rows of the expression matrix can be extracted
-as follows
+The gene names corresponding to the rows of the expression matrix can be
+extracted as follows
 
 <<zeisel_features, echo=TRUE, eval=TRUE>>=
 features <- Biobase::featureNames(MouseZeiselBrain)
@@ -182,17 +206,20 @@ head(features)
 
 \bibitem{Jaitin2014}
 Jaitin DA,  Kenigsberg E et al.
-\newblock Massively Parallel Single-Cell RNA-Seq for Marker-Free Decomposition of Tissues into Cell Types.
+\newblock Massively Parallel Single-Cell RNA-Seq for Marker-Free Decomposition
+of Tissues into Cell Types.
 \newblock {\textit{Science}}. 343 (6172) 776-779, 2014. DOI: 10.1126/science.1247651
 
 \bibitem{Deng2014}
 Deng Q,  Ramskold D,  Reinius B,  Sandberg R.
-\newblock Single-Cell RNA-Seq Reveals Dynamic, Random Monoallelic Gene Expression in Mammalian Cells.
+\newblock Single-Cell RNA-Seq Reveals Dynamic, Random Monoallelic Gene
+Expression in Mammalian Cells.
 \newblock {\textit{Science}}.  343 (6167) 193-196, 2014. DOI: 10.1126/science.1245316
 
 \bibitem{Zeisel2015}
 Zeisel A, Munoz-Manchado AB, Codeluppi S \textit{et al}.
-\newblock Cell types in the mouse cortex and hippocampus revleaed by single-cell RNA-seq.
+\newblock Cell types in the mouse cortex and hippocampus revleaed by
+single-cell RNA-seq.
 \newblock {\textit{Science}}.  34: 6226, 1138-1142, 2015. DOI:10.1126/science.aaa1934
 
 \end{thebibliography}

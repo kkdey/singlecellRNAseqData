@@ -16,6 +16,9 @@ gene ID or gene symbols.}
 \usage{
 Deng2014MouseESC
 }
+\value{
+Returns an ExpressionSet object for the sequencing data
+}
 \description{
 A dataset containing single cell RNA-seq data from mouse embryonic stem cells
 due to Deng et al (2014)
