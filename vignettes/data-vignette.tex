@@ -162,7 +162,7 @@ cells in the sample (along columns)
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{exprs} \hlkwb{<-} \hlkwd{exprs}\hlstd{(Deng2014MouseESC)}
+\hlstd{exprs} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{exprs}\hlstd{(Deng2014MouseESC)}
 \hlkwd{head}\hlstd{(exprs[,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{])}
 \end{alltt}
 \begin{verbatim}
@@ -184,7 +184,7 @@ stage information can be extracted as follows
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{pdata} \hlkwb{<-} \hlkwd{pData}\hlstd{(Deng2014MouseESC)}
+\hlstd{pdata} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{pData}\hlstd{(Deng2014MouseESC)}
 \hlkwd{table}\hlstd{(pdata}\hlopt{$}\hlstd{cell_type)}
 \end{alltt}
 \begin{verbatim}
@@ -203,7 +203,7 @@ as follows
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{features} \hlkwb{<-} \hlkwd{featureNames}\hlstd{(Deng2014MouseESC)}
+\hlstd{features} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{featureNames}\hlstd{(Deng2014MouseESC)}
 \hlkwd{head}\hlstd{(features)}
 \end{alltt}
 \begin{verbatim}
@@ -251,7 +251,7 @@ cells in the sample (along columns)
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{exprs} \hlkwb{<-} \hlkwd{exprs}\hlstd{(MouseJaitinSpleen)}
+\hlstd{exprs} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{exprs}\hlstd{(MouseJaitinSpleen)}
 \hlkwd{head}\hlstd{(exprs[,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{])}
 \end{alltt}
 \begin{verbatim}
@@ -273,7 +273,7 @@ ERCC features etc. The user can extract the sample metadata of interest as follo
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{pdata} \hlkwb{<-} \hlkwd{pData}\hlstd{(MouseJaitinSpleen)}
+\hlstd{pdata} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{pData}\hlstd{(MouseJaitinSpleen)}
 \hlkwd{head}\hlstd{(pdata[,}\hlkwd{c}\hlstd{(}\hlstr{"amplification_batch"}\hlstd{,}\hlstr{"sorting_markers"}\hlstd{,}\hlstr{"well_id"}\hlstd{,}\hlstr{"ERCC_dilution"}\hlstd{)])}
 \end{alltt}
 \begin{verbatim}
@@ -294,7 +294,7 @@ as follows
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{features} \hlkwb{<-} \hlkwd{featureNames}\hlstd{(MouseJaitinSpleen)}
+\hlstd{features} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{featureNames}\hlstd{(MouseJaitinSpleen)}
 \hlkwd{head}\hlstd{(features)}
 \end{alltt}
 \begin{verbatim}
@@ -343,7 +343,7 @@ cells in the sample (along columns)
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{exprs} \hlkwb{<-} \hlkwd{exprs}\hlstd{(MouseZeiselBrain)}
+\hlstd{exprs} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{exprs}\hlstd{(MouseZeiselBrain)}
 \hlkwd{head}\hlstd{(exprs[,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{])}
 \end{alltt}
 \begin{verbatim}
@@ -372,7 +372,7 @@ whom the cells were extracted.
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{pdata} \hlkwb{<-} \hlkwd{pData}\hlstd{(MouseZeiselBrain)}
+\hlstd{pdata} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{pData}\hlstd{(MouseZeiselBrain)}
 \hlkwd{head}\hlstd{(pdata[,}\hlkwd{c}\hlstd{(}\hlstr{"tissue"}\hlstd{,}\hlstr{"sex"}\hlstd{,}\hlstr{"age"}\hlstd{,}\hlstr{"level1_class"}\hlstd{,}\hlstr{"level2_class"}\hlstd{)])}
 \end{alltt}
 \begin{verbatim}
@@ -393,7 +393,7 @@ as follows
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{features} \hlkwb{<-} \hlkwd{featureNames}\hlstd{(MouseZeiselBrain)}
+\hlstd{features} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{featureNames}\hlstd{(MouseZeiselBrain)}
 \hlkwd{head}\hlstd{(features)}
 \end{alltt}
 \begin{verbatim}

@@ -1,6 +1,6 @@
 Package: singlecellRNAseqData
 Type: Package
-Title: Selected Single Cell RNA-seq datasets - due to Deng et al (2014), Jaitin et al (2014) and Zeisel et al (2015).
+Title: Selected Single Cell RNA-seq datasets - due to Deng et al (2014), Jaitin et al (2014) and Zeisel et al (2015)
 Version: 0.99.0
 Date: 2016-03-18
 Author: c(
@@ -16,5 +16,5 @@ License: GPL (>= 2)
 LazyData: TRUE
 Encoding: UTF-8
 VignetteBuilder: knitr
-biocViews: ExperimentData, ExpressionData, Mus musculus Data, RNASeqData
+biocViews: ExperimentData, ExpressionData, RNASeqData, SequencingData, StemCell, Mus_musculus_Data
 RoxygenNote: 5.0.1

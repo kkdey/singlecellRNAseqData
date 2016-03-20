@@ -4,7 +4,7 @@
 \name{Deng2014MouseESC}
 \alias{Deng2014MouseESC}
 \title{Mouse Embryonic stem cell (Esc) RNA-seq data due to Deng et al (2014)}
-\format{Data is an \code{\link{ExpressionSet}} object. The
+\format{Data is an \code{ExpressionSet} object. The
 \code{exprs} slot contains the gene read counts in a gene
 by sample matrix with 22431 genes and 259 samples from different stages of
 mouse embryonic development (zygote, 2 cell, 4 cell, 8 cell, 16 cell,
@@ -22,9 +22,9 @@ due to Deng et al (2014)
 }
 \examples{
 data(Deng2014MouseESC)
-exprs(Deng2014MouseESC)
-pData(Deng2014MouseESC)
-featureNames(Deng2014MouseESC)
+Biobase::exprs(Deng2014MouseESC)
+Biobase::pData(Deng2014MouseESC)
+Biobase::featureData(Deng2014MouseESC)
 }
 \references{
 Qiaolin Deng, Daniel Ramsköld, Björn Reinius, Rickard Sandberg. Single-Cell RNA-Seq Reveals Dynamic, Random Monoallelic Gene Expression in Mammalian Cells. Science, Vol. 343, Issue 6167, pp. 193-196, DOI: 10.1126/science.1245316

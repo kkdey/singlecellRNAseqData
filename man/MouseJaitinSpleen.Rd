@@ -4,7 +4,7 @@
 \name{MouseJaitinSpleen}
 \alias{MouseJaitinSpleen}
 \title{Mouse Spleen single cell RNA-seq data due to Jaitin et al (2014)}
-\format{Data is an \code{\link{ExpressionSet}} object. The
+\format{Data is an \code{ExpressionSet} object. The
 \code{exprs} slot contains the gene read counts in a gene
 by sample matrix with 20190 genes and 4590 samples.
 \code{phenoData} slot contains meta information of the samples on 15 features
@@ -19,9 +19,9 @@ A dataset containing single cell RNA-seq data from mouse spleen due to Jaitin et
 }
 \examples{
 data(MouseJaitinSpleen)
-exprs(MouseJaitinSpleen)
-pData(MouseJaitinSpleen)
-featureNames(MouseJaitinSpleen)
+Biobase::exprs(MouseJaitinSpleen)
+Biobase::pData(MouseJaitinSpleen)
+Biobase::featureData(MouseJaitinSpleen)
 }
 \references{
 Diego Adhemar Jaitin, Ephraim Kenigsberg, Hadas Keren-Shaul, Naama Elefant, Franziska Paul, Irina Zaretsky, Alexander Mildner, Nadav Cohen, Steffen Jung, Amos Tanay, Ido Amit. Massively Parallel Single-Cell RNA-Seq for Marker-Free Decomposition of Tissues into Cell Types. Science 343, 776-779 (2014) DOI: 10.1126/science.1247651
