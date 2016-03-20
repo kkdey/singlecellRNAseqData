@@ -1,0 +1,424 @@
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{Single cell RNA seq data due to Jaitin et al (2014), Deng et al (2014) and Zeisel et al (2015)}
+%\VignettePackage{singlecellRNAseqData}
+
+% To compile this document
+% library('knitr'); rm(list=ls()); knit('singlecellRNAseqData/vignettes/data-vignette.Rnw')
+% library('knitr'); rm(list=ls()); knit2pdf('singlecellRNAseqData/vignettes/data-vignette.Rnw'); openPDF('data-vignette.pdf')
+%
+
+\documentclass[12pt]{article}\usepackage[]{graphicx}\usepackage[usenames,dvipsnames]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+
+\newcommand{\singlecellRNAseqData}{\textit{singlecellRNAseqData}}
+\usepackage{dsfont}
+\usepackage{cite}
+
+
+
+\RequirePackage{/Library/Frameworks/R.framework/Versions/3.2/Resources/library/BiocStyle/resources/tex/Bioconductor}
+
+\AtBeginDocument{\bibliographystyle{/Library/Frameworks/R.framework/Versions/3.2/Resources/library/BiocStyle/resources/tex/unsrturl}}
+
+
+\author{Kushal K Dey, Chiaowen Joyce Hsiao \& Matthew Stephens \\[1em] \small{\textit{Stephens Lab}, The University of Chicago} \mbox{ }\\ \small{\texttt{$^*$Correspondending Email: mstephens@uchicago.edu}}}
+
+\bioctitle[Single cell RNA-seq data due to Jaitin et al (2014), Deng et al (2014) and Zeisel et al (2015)]{Single cell RNA-seq data due to Jaitin et al (2014), Deng et al (2014) and Zeisel et al (2015)}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\vspace{1em}
+ We present three selected single cell RNA-seq data as \textit{ExpressionSet} objects. These datasets include Mouse spleen single cell data due to Jaitin et al 2014 \cite{Jaitin2014}, Mouse embryonic stem cell data due to Deng et al 2014 \cite{Deng2014} and Mouse cortex and hippocampus single cell data due to Zeisel et al 2015 \cite{Zeisel2015}.
+\vspace{1em}
+\textbf{\singlecellRNAseqData{} version:} 0.99.0 \footnote{This document used the vignette from \Bioconductor{} package \Biocpkg{DESeq2, cellTree, CountClust} as \CRANpkg{knitr} template}
+\end{abstract}
+
+
+
+\newpage
+
+\tableofcontents
+
+\section{Installation}
+
+To install the Bioconductor version of this package,
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{source}\hlstd{(}\hlstr{"http://bioconductor.org/biocLite.R"}\hlstd{)}
+\hlkwd{biocLite}\hlstd{(}\hlstr{"singlecellRNAseqData"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+To install the working version from Github, the user needs CRAN package \CRANpkg{devtools}.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{library}\hlstd{(devtools)}
+\hlkwd{install_github}\hlstd{(}\hlstr{"kkdey/singlecellRNAseqData"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+To load the package
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{library}\hlstd{(singlecellRNAseqData)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+We now provide a brief summary of the three datasets hosted in this package and how the user can extract different features of the data from the \textit{ExpressionSet} framework in which the data is stored.
+
+\section{Deng et al (2014)}
+
+Deng et al (2014) \cite{Deng2014} collected embryonic stem cell (ESC) data from mouse spanning across several stages of mouse embryo development (zygote, 2 cell, 4 cell, 8 cell, 16 cell,
+early blastocyst, mid blsastocyst and late blastocyst stages). We present the data for a filtered set of $259$ ESCs (after removing SmartSeq and pooled samples) with reads measured across $22431$ genes. The data has been processed from the data publicly available at Gene Expression Omnibus (GEO:GSE45719: see \url{http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE45719})
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{data}\hlstd{(}\hlstr{"Deng2014MouseESC"}\hlstd{)}
+\hlstd{Deng2014MouseESC}
+\end{alltt}
+\begin{verbatim}
+## ExpressionSet (storageMode: lockedEnvironment)
+## assayData: 22431 features, 259 samples 
+##   element names: exprs 
+## protocolData: none
+## phenoData
+##   sampleNames: V278 V279 ... V205 (259 total)
+##   varLabels: cell_type embryo_id
+##   varMetadata: labelDescription
+## featureData
+##   featureNames: 0610005C13Rik 0610007C21Rik ... Zzz3 (22431 total)
+##   fvarLabels: gene_name
+##   fvarMetadata: labelDescription
+## experimentData: use 'experimentData(object)'
+## Annotation:
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+The expression data for the first few genes (along rows) and the first few
+cells in the sample (along columns)
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{exprs} \hlkwb{<-} \hlkwd{exprs}\hlstd{(Deng2014MouseESC)}
+\hlkwd{head}\hlstd{(exprs[,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{])}
+\end{alltt}
+\begin{verbatim}
+##               V278 V279 V280 V281 V115
+## 0610005C13Rik    0    0    0    0    2
+## 0610007C21Rik  194  148  378  208   26
+## 0610007L01Rik 4940 5034 3714 2538  667
+## 0610007P08Rik  323  672  226  241  219
+## 0610007P14Rik 2501 3203 2467 1952 1195
+## 0610007P22Rik   96  220  115  133   41
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+The phenotype or metadata on the samples includes the development stage of the cell
+and the embryo ID of the corresponding developing embryo. The development
+stage information can be extracted as follows
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{pdata} \hlkwb{<-} \hlkwd{pData}\hlstd{(Deng2014MouseESC)}
+\hlkwd{table}\hlstd{(pdata}\hlopt{$}\hlstd{cell_type)}
+\end{alltt}
+\begin{verbatim}
+## 
+##     16cell      4cell      8cell early2cell earlyblast  late2cell  lateblast 
+##         50         14         28          8         43         10         30 
+##   mid2cell   midblast         zy 
+##         12         60          4
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+The gene names corresponding to the rows of the expression matrix can be extracted
+as follows
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{features} \hlkwb{<-} \hlkwd{featureNames}\hlstd{(Deng2014MouseESC)}
+\hlkwd{head}\hlstd{(features)}
+\end{alltt}
+\begin{verbatim}
+## [1] "0610005C13Rik" "0610007C21Rik" "0610007L01Rik" "0610007P08Rik"
+## [5] "0610007P14Rik" "0610007P22Rik"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\section{Jaitin et al (2014)}
+
+Jaitin et al (2014) \cite{Jaitin2014} collected single cell data from Mouse spleen using several sorting markers, with the purpose of decomposing tissues into cell types. Expression was recorded for $4590$ samples of single cells with reads measured across $20190$ genes. The data
+was processed from the publicly available data at Gene Expression Omnibus (GEO:GSE54006: see \url{http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE54006})
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{data}\hlstd{(}\hlstr{"MouseJaitinSpleen"}\hlstd{)}
+\hlstd{MouseJaitinSpleen}
+\end{alltt}
+\begin{verbatim}
+## ExpressionSet (storageMode: lockedEnvironment)
+## assayData: 20190 features, 4590 samples 
+##   element names: exprs 
+## protocolData: none
+## phenoData
+##   sampleNames: 7 8 ... 4604 (4590 total)
+##   varLabels: index sequencing_batch ...
+##     Column_name_in_processed_data_file (15 total)
+##   varMetadata: labelDescription
+## featureData
+##   featureNames: 0610007C21Rik_Apr3 0610007L01Rik ... ERCC-00002 (20190
+##     total)
+##   fvarLabels: gene_names
+##   fvarMetadata: labelDescription
+## experimentData: use 'experimentData(object)'
+## Annotation:
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+The expression data for the first few genes (along rows) and the first few
+cells in the sample (along columns)
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{exprs} \hlkwb{<-} \hlkwd{exprs}\hlstd{(MouseJaitinSpleen)}
+\hlkwd{head}\hlstd{(exprs[,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{])}
+\end{alltt}
+\begin{verbatim}
+##                    7 8 9 10 11
+## 0610007C21Rik_Apr3 0 0 0  1  0
+## 0610007L01Rik      0 1 0  0  0
+## 0610007P08Rik      0 0 0  0  0
+## 0610007P14Rik      0 1 0  0  0
+## 0610007P22Rik      0 0 0  0  0
+## 0610009B22Rik      0 0 0  0  0
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+Metadata is available on $15$ features of the samples or single cells,
+including mouse ID, well ID, amplification batch, sequencing batch,
+ERCC features etc. The user can extract the sample metadata of interest as follows.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{pdata} \hlkwb{<-} \hlkwd{pData}\hlstd{(MouseJaitinSpleen)}
+\hlkwd{head}\hlstd{(pdata[,}\hlkwd{c}\hlstd{(}\hlstr{"amplification_batch"}\hlstd{,}\hlstr{"sorting_markers"}\hlstd{,}\hlstr{"well_id"}\hlstd{,}\hlstr{"ERCC_dilution"}\hlstd{)])}
+\end{alltt}
+\begin{verbatim}
+##    amplification_batch sorting_markers well_id ERCC_dilution
+## 7                    0          CD11c+      A1      2.00E-05
+## 8                    0          CD11c+      B1      2.00E-05
+## 9                    0          CD11c+      C1      2.00E-05
+## 10                   0          CD11c+      D1      2.00E-05
+## 11                   0          CD11c+      E1      2.00E-05
+## 12                   0          CD11c+      F1      2.00E-05
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+The gene names corresponding to the rows of the expression matrix can be extracted
+as follows
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{features} \hlkwb{<-} \hlkwd{featureNames}\hlstd{(MouseJaitinSpleen)}
+\hlkwd{head}\hlstd{(features)}
+\end{alltt}
+\begin{verbatim}
+## [1] "0610007C21Rik_Apr3" "0610007L01Rik"      "0610007P08Rik"     
+## [4] "0610007P14Rik"      "0610007P22Rik"      "0610009B22Rik"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+\section{Zeisel et al (2015)}
+
+Zeisel et al (2015) \cite{Zeisel2015} collected single cell data from Mouse cortex and
+hippocampus, with the idea of identifying different cell types. Expression was recorded for $3005$ samples of single cells with reads measured across $19968$ genes. The data
+was processed from the publicly available data at Gene Expression Omnibus (GEO:GSE60361: see \url{http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE60361})
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{data}\hlstd{(}\hlstr{"MouseZeiselBrain"}\hlstd{)}
+\hlstd{MouseZeiselBrain}
+\end{alltt}
+\begin{verbatim}
+## ExpressionSet (storageMode: lockedEnvironment)
+## assayData: 19968 features, 3005 samples 
+##   element names: exprs 
+## protocolData: none
+## phenoData
+##   sampleNames: 1772071015_C02 1772071017_G12 ... 1772058148_F03 (3005
+##     total)
+##   varLabels: tissue group_no ... level2_class (10 total)
+##   varMetadata: labelDescription
+## featureData
+##   featureNames: Tspan12 Tshz1 ... Gm20738_loc3 (19968 total)
+##   fvarLabels: gene_name
+##   fvarMetadata: labelDescription
+## experimentData: use 'experimentData(object)'
+## Annotation:
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+The expression data for the first few genes (along rows) and the first few
+cells in the sample (along columns)
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{exprs} \hlkwb{<-} \hlkwd{exprs}\hlstd{(MouseZeiselBrain)}
+\hlkwd{head}\hlstd{(exprs[,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{])}
+\end{alltt}
+\begin{verbatim}
+##          1772071015_C02 1772071017_G12 1772071017_A05 1772071014_B06
+## Tspan12               0              0              0              3
+## Tshz1                 3              1              0              2
+## Fnbp1l                3              1              6              4
+## Adamts15              0              0              0              0
+## Cldn12                1              1              1              0
+## Rxfp1                 0              0              0              0
+##          1772067065_H06
+## Tspan12               0
+## Tshz1                 2
+## Fnbp1l                1
+## Adamts15              0
+## Cldn12                0
+## Rxfp1                 0
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+Metadata is available on $10$ features of the samples or single cells,
+including tissue of origin, class type of cells, age and sex of subjects from
+whom the cells were extracted.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{pdata} \hlkwb{<-} \hlkwd{pData}\hlstd{(MouseZeiselBrain)}
+\hlkwd{head}\hlstd{(pdata[,}\hlkwd{c}\hlstd{(}\hlstr{"tissue"}\hlstd{,}\hlstr{"sex"}\hlstd{,}\hlstr{"age"}\hlstd{,}\hlstr{"level1_class"}\hlstd{,}\hlstr{"level2_class"}\hlstd{)])}
+\end{alltt}
+\begin{verbatim}
+##                  tissue    sex age level1_class level2_class
+## 1772071015_C02 sscortex female  21 interneurons        Int10
+## 1772071017_G12 sscortex   male  20 interneurons        Int10
+## 1772071017_A05 sscortex   male  20 interneurons         Int6
+## 1772071014_B06 sscortex female  21 interneurons        Int10
+## 1772067065_H06 sscortex female  25 interneurons         Int9
+## 1772071017_E02 sscortex   male  20 interneurons         Int9
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+The gene names corresponding to the rows of the expression matrix can be extracted
+as follows
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{features} \hlkwb{<-} \hlkwd{featureNames}\hlstd{(MouseZeiselBrain)}
+\hlkwd{head}\hlstd{(features)}
+\end{alltt}
+\begin{verbatim}
+## [1] "Tspan12"  "Tshz1"    "Fnbp1l"   "Adamts15" "Cldn12"   "Rxfp1"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\begin{thebibliography}{1}
+
+\bibitem{Jaitin2014}
+Jaitin DA,  Kenigsberg E et al.
+\newblock Massively Parallel Single-Cell RNA-Seq for Marker-Free Decomposition of Tissues into Cell Types.
+\newblock {\textit{Science}}. 343 (6172) 776-779, 2014. DOI: 10.1126/science.1247651
+
+\bibitem{Deng2014}
+Deng Q,  Ramskold D,  Reinius B,  Sandberg R.
+\newblock Single-Cell RNA-Seq Reveals Dynamic, Random Monoallelic Gene Expression in Mammalian Cells.
+\newblock {\textit{Science}}.  343 (6167) 193-196, 2014. DOI: 10.1126/science.1245316
+
+\bibitem{Zeisel2015}
+Zeisel A, Munoz-Manchado AB, Codeluppi S \textit{et al}.
+\newblock Cell types in the mouse cortex and hippocampus revleaed by single-cell RNA-seq.
+\newblock {\textit{Science}}.  34: 6226, 1138-1142, 2015. DOI:10.1126/science.aaa1934
+
+\end{thebibliography}
+
+\end{document}
