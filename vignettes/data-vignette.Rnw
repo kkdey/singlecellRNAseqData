@@ -20,9 +20,11 @@ opts_chunk$set(tidy=FALSE,tidy.opts=list(width.cutoff=30),dev="png",
                message=FALSE)
 @
 
+
 <<style, eval=TRUE, echo=FALSE, results="asis">>=
 BiocStyle::latex()
 @
+
 
 \author{Kushal K Dey, Chiaowen Joyce Hsiao \& Matthew Stephens \\[1em]
 \small{\textit{Stephens Lab}, The University of Chicago} \mbox{ }\\
@@ -97,29 +99,30 @@ data("Deng2014MouseESC")
 Deng2014MouseESC
 @ %def
 
-The expression data for the first few genes (along rows) and the first few
+Expression data for the first few genes (along rows) and the first few
 cells in the sample (along columns)
 
 <<deng_exprs, echo=TRUE, eval=TRUE>>=
-exprs <- Biobase::exprs(Deng2014MouseESC)
-head(exprs[,1:5])
+counts_deng <- Biobase::exprs(Deng2014MouseESC)
+head(counts_deng[,1:5])
 @ %def
 
-The phenotype or metadata on the samples includes the development stage of the
-cell and the embryo ID of the corresponding developing embryo. The development
-stage information can be extracted as follows
+
+Phenotype or metadata sample information are stored in the `phenoData` slot and include both the development stage of each cell and the corresponding embryo ID. The development
+stage of each cell can be extracted as follows:
 
 <<deng_pdata, echo=TRUE, eval=TRUE>>=
-pdata <- Biobase::pData(Deng2014MouseESC)
-table(pdata$cell_type)
+pheno_deng <- Biobase::pData(Deng2014MouseESC)
+colnames(pheno_deng)
+table(pheno_deng$cell_type)
 @ %def
 
-The gene names corresponding to the rows of the expression matrix can be
-extracted as follows
+
+Gene information are stored in `featureData` slot:
 
 <<deng_features, echo=TRUE, eval=TRUE>>=
-features <- Biobase::featureNames(Deng2014MouseESC)
-head(features)
+genes_deng <- Biobase::fData(Deng2014MouseESC)
+head(genes_deng)
 @ %def
 
 \section{Jaitin et al (2014)}
@@ -136,13 +139,15 @@ data("MouseJaitinSpleen")
 MouseJaitinSpleen
 @ %def
 
-The expression data for the first few genes (along rows) and the first few
+
+Expression data for the first few genes (along rows) and the first few
 cells in the sample (along columns)
 
 <<jaitin_exprs, echo=TRUE, eval=TRUE>>=
-exprs <- Biobase::exprs(MouseJaitinSpleen)
-head(exprs[,1:5])
+counts_jaitin <- Biobase::exprs(MouseJaitinSpleen)
+head(counts_jaitin[,1:5])
 @ %def
+
 
 Metadata is available on $15$ features of the samples or single cells,
 including mouse ID, well ID, amplification batch, sequencing batch,
@@ -150,16 +155,19 @@ ERCC features etc. The user can extract the sample metadata of interest as
 follows.
 
 <<jaitin_pdata, echo=TRUE, eval=TRUE>>=
-pdata <- Biobase::pData(MouseJaitinSpleen)
-head(pdata[,c("amplification_batch","sorting_markers","well_id","ERCC_dilution")])
+pheno_jaitin <- Biobase::pData(MouseJaitinSpleen)
+head(pheno_jaitin[ ,c("amplification_batch",
+                      "sorting_markers",
+                      "well_id",
+                      "ERCC_dilution")])
 @ %def
 
-The gene names corresponding to the rows of the expression matrix can be
-extracted as follows
+
+Gene names are stored in the `featureData` slot:
 
 <<jaitin_features, echo=TRUE, eval=TRUE>>=
-features <- Biobase::featureNames(MouseJaitinSpleen)
-head(features)
+genes_jaitin <- Biobase::featureNames(MouseJaitinSpleen)
+head(genes_jaitin)
 @ %def
 
 
@@ -177,30 +185,34 @@ data("MouseZeiselBrain")
 MouseZeiselBrain
 @ %def
 
+
 The expression data for the first few genes (along rows) and the first few
 cells in the sample (along columns)
 
 <<zeisel_exprs, echo=TRUE, eval=TRUE>>=
-exprs <- Biobase::exprs(MouseZeiselBrain)
-head(exprs[,1:5])
+counts_zeisel <- Biobase::exprs(MouseZeiselBrain)
+head(counts_zeisel[,1:5])
 @ %def
+
 
 Metadata is available on $10$ features of the samples or single cells,
 including tissue of origin, class type of cells, age and sex of subjects from
 whom the cells were extracted.
 
 <<zeisel_pdata, echo=TRUE, eval=TRUE>>=
-pdata <- Biobase::pData(MouseZeiselBrain)
-head(pdata[,c("tissue","sex","age","level1_class","level2_class")])
+pheno_data <- Biobase::pData(MouseZeiselBrain)
+head(pheno_data[,c("tissue","sex","age","level1_class","level2_class")])
 @ %def
+
 
 The gene names corresponding to the rows of the expression matrix can be
 extracted as follows
 
 <<zeisel_features, echo=TRUE, eval=TRUE>>=
-features <- Biobase::featureNames(MouseZeiselBrain)
-head(features)
+genes_zeisel <- Biobase::featureNames(MouseZeiselBrain)
+head(genes_zeisel)
 @ %def
+
 
 \begin{thebibliography}{1}
 
