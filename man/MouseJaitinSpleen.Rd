@@ -18,7 +18,8 @@ MouseJaitinSpleen
 Returns an ExpressionSet object for the sequencing data
 }
 \description{
-A dataset containing single cell RNA-seq data from mouse spleen due to Jaitin et al (2014)
+A dataset containing single cell RNA-seq data from mouse spleen due to
+Jaitin et al (2014)
 }
 \examples{
 data(MouseJaitinSpleen)
@@ -27,7 +28,11 @@ Biobase::pData(MouseJaitinSpleen)
 Biobase::featureData(MouseJaitinSpleen)
 }
 \references{
-Diego Adhemar Jaitin, Ephraim Kenigsberg, Hadas Keren-Shaul, Naama Elefant, Franziska Paul, Irina Zaretsky, Alexander Mildner, Nadav Cohen, Steffen Jung, Amos Tanay, Ido Amit. Massively Parallel Single-Cell RNA-Seq for Marker-Free Decomposition of Tissues into Cell Types. Science 343, 776-779 (2014) DOI: 10.1126/science.1247651
+Diego Adhemar Jaitin, Ephraim Kenigsberg, Hadas Keren-Shaul,
+Naama Elefant, Franziska Paul, Irina Zaretsky, Alexander Mildner,
+Nadav Cohen, Steffen Jung, Amos Tanay, Ido Amit. Massively Parallel
+Single-Cell RNA-Seq for Marker-Free Decomposition of Tissues into Cell Types.
+Science 343, 776-779 (2014) DOI: 10.1126/science.1247651
 }
 \keyword{datasets}
 

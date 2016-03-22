@@ -3,7 +3,8 @@
 \docType{data}
 \name{MouseZeiselBrain}
 \alias{MouseZeiselBrain}
-\title{Single cell RNA seq data from mouse cortex and hippocampus due to Zeisel et al (2015)}
+\title{Single cell RNA seq data from mouse cortex and hippocampus due to Zeisel et al
+(2015)}
 \format{Data is an \code{ExpressionSet} object. The
 \code{exprs} slot contains the gene read counts in a gene
 by sample matrix with 19968 genes and 3005 samples from different parts or
@@ -20,7 +21,8 @@ MouseZeiselBrain
 Returns an ExpressionSet object for the sequencing data
 }
 \description{
-A dataset containing single cell RNA-seq data from mouse cortex and hippocampus
+A dataset containing single cell RNA-seq data from mouse cortex and
+hippocampus
 due to Zeisel et al (2015)
 }
 \examples{
@@ -30,7 +32,12 @@ Biobase::pData(MouseZeiselBrain)
 Biobase::featureData(MouseZeiselBrain)
 }
 \references{
-Amit Zeisel, Ana B Munoz-Manchado, Simone Codeluppi, Peter Lönnerberg, Gioele La Manno, Anna Juréus, Sueli Marques, Hermany Manguba, Liqun He, Christer Betsholtz, Charlott Rolny, Goncalo Castelo-Branco, Jens Hjerling-Leffler, & Sten Linarsson. Cell types in the mouse cortex and hippocampus revleaed by single-cell RNA-seq. Science 34: 6226, 1138-1142 (2015) doi:10.1126/science.aaa1934
+Amit Zeisel, Ana B Munoz-Manchado, Simone Codeluppi, Peter Lönnerberg,
+Gioele La Manno, Anna Juréus, Sueli Marques, Hermany Manguba, Liqun He,
+Christer Betsholtz, Charlott Rolny, Goncalo Castelo-Branco,
+Jens Hjerling-Leffler, & Sten Linarsson.
+Cell types in the mouse cortex and hippocampus revleaed by single-cell RNA-seq.
+Science 34: 6226, 1138-1142 (2015) doi:10.1126/science.aaa1934
 }
 \keyword{datasets}
 

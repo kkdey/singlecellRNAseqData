@@ -30,7 +30,9 @@ Biobase::pData(Deng2014MouseESC)
 Biobase::featureData(Deng2014MouseESC)
 }
 \references{
-Qiaolin Deng, Daniel Ramsköld, Björn Reinius, Rickard Sandberg. Single-Cell RNA-Seq Reveals Dynamic, Random Monoallelic Gene Expression in Mammalian Cells. Science, Vol. 343, Issue 6167, pp. 193-196, DOI: 10.1126/science.1245316
+Qiaolin Deng, Daniel Ramsköld, Björn Reinius, Rickard Sandberg.
+Single-Cell RNA-Seq Reveals Dynamic, Random Monoallelic Gene Expression in Mammalian Cells.
+Science, Vol. 343, Issue 6167, pp. 193-196, DOI: 10.1126/science.1245316
 }
 \keyword{datasets}
 

@@ -64,14 +64,18 @@
 
 
 
-\RequirePackage{/Library/Frameworks/R.framework/Versions/3.2/Resources/library/BiocStyle/resources/tex/Bioconductor}
 
-\AtBeginDocument{\bibliographystyle{/Library/Frameworks/R.framework/Versions/3.2/Resources/library/BiocStyle/resources/tex/unsrturl}}
+\RequirePackage{/Library/Frameworks/R.framework/Versions/3.3/Resources/library/BiocStyle/resources/tex/Bioconductor}
+
+\AtBeginDocument{\bibliographystyle{/Library/Frameworks/R.framework/Versions/3.3/Resources/library/BiocStyle/resources/tex/unsrturl}}
 
 
-\author{Kushal K Dey, Chiaowen Joyce Hsiao \& Matthew Stephens \\[1em] \small{\textit{Stephens Lab}, The University of Chicago} \mbox{ }\\ \small{\texttt{$^*$Correspondending Email: mstephens@uchicago.edu}}}
 
-\bioctitle[Single cell RNA-seq data due to Jaitin et al (2014), Deng et al (2014) and Zeisel et al (2015)]{Single cell RNA-seq data due to Jaitin et al (2014), Deng et al (2014) and Zeisel et al (2015)}
+\author{Kushal K Dey, Chiaowen Joyce Hsiao \& Matthew Stephens \\[1em]
+\small{\textit{Stephens Lab}, The University of Chicago} \mbox{ }\\
+\small{\texttt{$^*$Correspondending Email: mstephens@uchicago.edu}}}
+
+\bioctitle[Single-cell RNA-Seq data sets]{Single-cell RNA-Seq data sets}
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 
@@ -79,10 +83,14 @@
 
 \begin{abstract}
 \vspace{1em}
- We present three selected single cell RNA-seq data as \textit{ExpressionSet} objects. These datasets include Mouse spleen single cell data due to Jaitin et al 2014 \cite{Jaitin2014}, Mouse embryonic stem cell data due to Deng et al 2014 \cite{Deng2014} and Mouse cortex and hippocampus single cell data due to Zeisel et al 2015 \cite{Zeisel2015}.
+ This package includes three single-cell RNA-seq data sets: 1) Mouse spleen cells due to Jaitin et al 2014 \cite{Jaitin2014}, 2) Mouse preimplantation embryos due to Deng et al
+ 2014 \cite{Deng2014}, and 3) Mouse cortex and hippocampus cells data due to
+ Zeisel et al 2015 \cite{Zeisel2015}. Each data set is stored in an \textit{ExpressionSet} objects. We previously analyzed Jaitin et al and Deng et al in the manuscript entitled "Clustering RNA-seq expression data using grade of membership models", Kushal K Dey, Chiaowen Joyce Hsiao, and Matthew Stephens (2016).
+
 \vspace{1em}
 \textbf{\singlecellRNAseqData{} version:} 0.99.0 \footnote{This document used the vignette from \Bioconductor{} package \Biocpkg{DESeq2, cellTree, CountClust} as \CRANpkg{knitr} template}
 \end{abstract}
+
 
 
 
@@ -103,7 +111,8 @@ To install the Bioconductor version of this package,
 \end{kframe}
 \end{knitrout}
 
-To install the working version from Github, the user needs CRAN package \CRANpkg{devtools}.
+To install the working version from Github, the user needs CRAN package
+\CRANpkg{devtools}.
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -124,17 +133,25 @@ To load the package
 \end{kframe}
 \end{knitrout}
 
-We now provide a brief summary of the three datasets hosted in this package and how the user can extract different features of the data from the \textit{ExpressionSet} framework in which the data is stored.
+We now provide a brief summary of the three datasets hosted in this package and
+how the user can extract different features of the data from the
+\textit{ExpressionSet} framework in which the data is stored.
 
 \section{Deng et al (2014)}
 
-Deng et al (2014) \cite{Deng2014} collected embryonic stem cell (ESC) data from mouse spanning across several stages of mouse embryo development (zygote, 2 cell, 4 cell, 8 cell, 16 cell,
-early blastocyst, mid blsastocyst and late blastocyst stages). We present the data for a filtered set of $259$ ESCs (after removing SmartSeq and pooled samples) with reads measured across $22431$ genes. The data has been processed from the data publicly available at Gene Expression Omnibus (GEO:GSE45719: see \url{http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE45719})
+Deng et al (2014) \cite{Deng2014} collected single-cell RNA-seq expression data from embryos across mouse embryonic preimplantation developmental stages (zygote, 2 cell,
+4 cell, 8 cell, 16 cell,early blastocyst, mid blastocyst and late blastocyst
+stages). The data in this package includes read counts of $22,431$ genes (after removing SmartSeq2 and pooled samples) from $259$ single cells. We downloaded the data from Gene Expression Omnibus
+(GEO:GSE45719: see \url{http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE45719})
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{data}\hlstd{(}\hlstr{"Deng2014MouseESC"}\hlstd{)}
+\end{alltt}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in data("{}Deng2014MouseESC"{}): data set 'Deng2014MouseESC' not found}}\begin{alltt}
 \hlstd{Deng2014MouseESC}
 \end{alltt}
 \begin{verbatim}
@@ -156,14 +173,15 @@ early blastocyst, mid blsastocyst and late blastocyst stages). We present the da
 \end{kframe}
 \end{knitrout}
 
-The expression data for the first few genes (along rows) and the first few
-cells in the sample (along columns)
+
+Expression data for the first few genes (along rows) and the first few
+cells in the sample (along columns):
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{exprs} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{exprs}\hlstd{(Deng2014MouseESC)}
-\hlkwd{head}\hlstd{(exprs[,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{])}
+\hlstd{counts_deng} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{exprs}\hlstd{(Deng2014MouseESC)}
+\hlkwd{head}\hlstd{(counts_deng[,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{])}
 \end{alltt}
 \begin{verbatim}
 ##               V278 V279 V280 V281 V115
@@ -177,15 +195,21 @@ cells in the sample (along columns)
 \end{kframe}
 \end{knitrout}
 
-The phenotype or metadata on the samples includes the development stage of the cell
-and the embryo ID of the corresponding developing embryo. The development
-stage information can be extracted as follows
+
+Phenotype or metadata sample information are stored in the `phenoData` slot and include both the development stage of each cell and the corresponding embryo ID. The development
+stage of each cell can be extracted as follows:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{pdata} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{pData}\hlstd{(Deng2014MouseESC)}
-\hlkwd{table}\hlstd{(pdata}\hlopt{$}\hlstd{cell_type)}
+\hlstd{pheno_deng} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{pData}\hlstd{(Deng2014MouseESC)}
+\hlkwd{colnames}\hlstd{(pheno_deng)}
+\end{alltt}
+\begin{verbatim}
+## [1] "cell_type" "embryo_id"
+\end{verbatim}
+\begin{alltt}
+\hlkwd{table}\hlstd{(pheno_deng}\hlopt{$}\hlstd{cell_type)}
 \end{alltt}
 \begin{verbatim}
 ## 
@@ -197,26 +221,33 @@ stage information can be extracted as follows
 \end{kframe}
 \end{knitrout}
 
-The gene names corresponding to the rows of the expression matrix can be extracted
-as follows
+
+Gene information are stored in `featureData` slot:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{features} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{featureNames}\hlstd{(Deng2014MouseESC)}
-\hlkwd{head}\hlstd{(features)}
+\hlstd{genes_deng} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{fData}\hlstd{(Deng2014MouseESC)}
+\hlkwd{head}\hlstd{(genes_deng)}
 \end{alltt}
 \begin{verbatim}
-## [1] "0610005C13Rik" "0610007C21Rik" "0610007L01Rik" "0610007P08Rik"
-## [5] "0610007P14Rik" "0610007P22Rik"
+##                   gene_name
+## 0610005C13Rik 0610005C13Rik
+## 0610007C21Rik 0610007C21Rik
+## 0610007L01Rik 0610007L01Rik
+## 0610007P08Rik 0610007P08Rik
+## 0610007P14Rik 0610007P14Rik
+## 0610007P22Rik 0610007P22Rik
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
 
+
 \section{Jaitin et al (2014)}
 
-Jaitin et al (2014) \cite{Jaitin2014} collected single cell data from Mouse spleen using several sorting markers, with the purpose of decomposing tissues into cell types. Expression was recorded for $4590$ samples of single cells with reads measured across $20190$ genes. The data
-was processed from the publicly available data at Gene Expression Omnibus (GEO:GSE54006: see \url{http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE54006})
+Jaitin et al (2014) \cite{Jaitin2014} collected single cell RNAseq data of mouse spleen cells using Unique Molecule Identifiers (UMIs). $4,590$ single cells were included with $20,190$ genes. The dataset includes in this package was downloaded from Gene Expression Omnibus (GEO:GSE54006: see
+\url{http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE54006})
+
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -245,14 +276,15 @@ was processed from the publicly available data at Gene Expression Omnibus (GEO:G
 \end{kframe}
 \end{knitrout}
 
-The expression data for the first few genes (along rows) and the first few
-cells in the sample (along columns)
+
+Expression data for the first few genes (along rows) and the first few
+cells in the sample (along columns):
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{exprs} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{exprs}\hlstd{(MouseJaitinSpleen)}
-\hlkwd{head}\hlstd{(exprs[,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{])}
+\hlstd{counts_jaitin} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{exprs}\hlstd{(MouseJaitinSpleen)}
+\hlkwd{head}\hlstd{(counts_jaitin[,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{])}
 \end{alltt}
 \begin{verbatim}
 ##                    7 8 9 10 11
@@ -266,15 +298,17 @@ cells in the sample (along columns)
 \end{kframe}
 \end{knitrout}
 
-Metadata is available on $15$ features of the samples or single cells,
-including mouse ID, well ID, amplification batch, sequencing batch,
-ERCC features etc. The user can extract the sample metadata of interest as follows.
+
+Phenotype or metadata of the samples include mouse ID, well ID, amplification batch, sequencing batch and can be extracted as follows:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{pdata} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{pData}\hlstd{(MouseJaitinSpleen)}
-\hlkwd{head}\hlstd{(pdata[,}\hlkwd{c}\hlstd{(}\hlstr{"amplification_batch"}\hlstd{,}\hlstr{"sorting_markers"}\hlstd{,}\hlstr{"well_id"}\hlstd{,}\hlstr{"ERCC_dilution"}\hlstd{)])}
+\hlstd{pheno_jaitin} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{pData}\hlstd{(MouseJaitinSpleen)}
+\hlkwd{head}\hlstd{(pheno_jaitin[ ,}\hlkwd{c}\hlstd{(}\hlstr{"amplification_batch"}\hlstd{,}
+                      \hlstr{"sorting_markers"}\hlstd{,}
+                      \hlstr{"well_id"}\hlstd{,}
+                      \hlstr{"ERCC_dilution"}\hlstd{)])}
 \end{alltt}
 \begin{verbatim}
 ##    amplification_batch sorting_markers well_id ERCC_dilution
@@ -288,14 +322,14 @@ ERCC features etc. The user can extract the sample metadata of interest as follo
 \end{kframe}
 \end{knitrout}
 
-The gene names corresponding to the rows of the expression matrix can be extracted
-as follows
+
+Gene names are stored in the `featureData` slot:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{features} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{featureNames}\hlstd{(MouseJaitinSpleen)}
-\hlkwd{head}\hlstd{(features)}
+\hlstd{genes_jaitin} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{featureNames}\hlstd{(MouseJaitinSpleen)}
+\hlkwd{head}\hlstd{(genes_jaitin)}
 \end{alltt}
 \begin{verbatim}
 ## [1] "0610007C21Rik_Apr3" "0610007L01Rik"      "0610007P08Rik"     
@@ -307,9 +341,10 @@ as follows
 
 \section{Zeisel et al (2015)}
 
-Zeisel et al (2015) \cite{Zeisel2015} collected single cell data from Mouse cortex and
-hippocampus, with the idea of identifying different cell types. Expression was recorded for $3005$ samples of single cells with reads measured across $19968$ genes. The data
-was processed from the publicly available data at Gene Expression Omnibus (GEO:GSE60361: see \url{http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE60361})
+Zeisel et al (2015) \cite{Zeisel2015} collected single cell RNA-seq data from Mouse
+cortex and hippocampus, with the goal of identifying different cell types. Read counts of $19,968$ genes were included in the released data set for $3,005$ single cells. The data in this package was downloaed from Gene Expression Omnibus (GEO:GSE60361: see
+\url{http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE60361})
+
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -337,14 +372,15 @@ was processed from the publicly available data at Gene Expression Omnibus (GEO:G
 \end{kframe}
 \end{knitrout}
 
-The expression data for the first few genes (along rows) and the first few
-cells in the sample (along columns)
+
+Expression data for the first few genes (along rows) and the first few
+cells in the sample (along columns):
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{exprs} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{exprs}\hlstd{(MouseZeiselBrain)}
-\hlkwd{head}\hlstd{(exprs[,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{])}
+\hlstd{counts_zeisel} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{exprs}\hlstd{(MouseZeiselBrain)}
+\hlkwd{head}\hlstd{(counts_zeisel[,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{])}
 \end{alltt}
 \begin{verbatim}
 ##          1772071015_C02 1772071017_G12 1772071017_A05 1772071014_B06
@@ -365,15 +401,14 @@ cells in the sample (along columns)
 \end{kframe}
 \end{knitrout}
 
-Metadata is available on $10$ features of the samples or single cells,
-including tissue of origin, class type of cells, age and sex of subjects from
-whom the cells were extracted.
+
+Phenotype or metadata of the samples include tissue of origin, class type of cells, age and sex of subjects from whom the cells were extracted.
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{pdata} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{pData}\hlstd{(MouseZeiselBrain)}
-\hlkwd{head}\hlstd{(pdata[,}\hlkwd{c}\hlstd{(}\hlstr{"tissue"}\hlstd{,}\hlstr{"sex"}\hlstd{,}\hlstr{"age"}\hlstd{,}\hlstr{"level1_class"}\hlstd{,}\hlstr{"level2_class"}\hlstd{)])}
+\hlstd{pheno_zeisel} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{pData}\hlstd{(MouseZeiselBrain)}
+\hlkwd{head}\hlstd{(pheno_zeisel[,}\hlkwd{c}\hlstd{(}\hlstr{"tissue"}\hlstd{,}\hlstr{"sex"}\hlstd{,}\hlstr{"age"}\hlstd{,}\hlstr{"level1_class"}\hlstd{,}\hlstr{"level2_class"}\hlstd{)])}
 \end{alltt}
 \begin{verbatim}
 ##                  tissue    sex age level1_class level2_class
@@ -387,14 +422,14 @@ whom the cells were extracted.
 \end{kframe}
 \end{knitrout}
 
-The gene names corresponding to the rows of the expression matrix can be extracted
-as follows
+
+Gene names are stored in `featureData` slot:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{features} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{featureNames}\hlstd{(MouseZeiselBrain)}
-\hlkwd{head}\hlstd{(features)}
+\hlstd{genes_zeisel} \hlkwb{<-} \hlstd{Biobase}\hlopt{::}\hlkwd{featureNames}\hlstd{(MouseZeiselBrain)}
+\hlkwd{head}\hlstd{(genes_zeisel)}
 \end{alltt}
 \begin{verbatim}
 ## [1] "Tspan12"  "Tshz1"    "Fnbp1l"   "Adamts15" "Cldn12"   "Rxfp1"
@@ -402,21 +437,25 @@ as follows
 \end{kframe}
 \end{knitrout}
 
+
 \begin{thebibliography}{1}
 
 \bibitem{Jaitin2014}
 Jaitin DA,  Kenigsberg E et al.
-\newblock Massively Parallel Single-Cell RNA-Seq for Marker-Free Decomposition of Tissues into Cell Types.
+\newblock Massively Parallel Single-Cell RNA-Seq for Marker-Free Decomposition
+of Tissues into Cell Types.
 \newblock {\textit{Science}}. 343 (6172) 776-779, 2014. DOI: 10.1126/science.1247651
 
 \bibitem{Deng2014}
 Deng Q,  Ramskold D,  Reinius B,  Sandberg R.
-\newblock Single-Cell RNA-Seq Reveals Dynamic, Random Monoallelic Gene Expression in Mammalian Cells.
+\newblock Single-Cell RNA-Seq Reveals Dynamic, Random Monoallelic Gene
+Expression in Mammalian Cells.
 \newblock {\textit{Science}}.  343 (6167) 193-196, 2014. DOI: 10.1126/science.1245316
 
 \bibitem{Zeisel2015}
 Zeisel A, Munoz-Manchado AB, Codeluppi S \textit{et al}.
-\newblock Cell types in the mouse cortex and hippocampus revleaed by single-cell RNA-seq.
+\newblock Cell types in the mouse cortex and hippocampus revleaed by
+single-cell RNA-seq.
 \newblock {\textit{Science}}.  34: 6226, 1138-1142, 2015. DOI:10.1126/science.aaa1934
 
 \end{thebibliography}
