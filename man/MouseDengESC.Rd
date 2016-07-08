@@ -6,13 +6,13 @@
 \title{Mouse Embryonic stem cell (Esc) RNA-seq data due to Deng et al (2014)}
 \format{Data is an \code{ExpressionSet} object. The
 \code{exprs} slot contains the gene read counts in a gene
-by sample matrix with 22431 genes and 259 samples from different stages of
-mouse embryonic development (zygote, 2 cell, 4 cell, 8 cell, 16 cell,
-early blastocyst, mid blsastocyst and late blastocyst stages).
-\code{phenoData} slot contains meta information of the samples on the
-development stage the cell comes from and the id of the embryo it belongs to.
-\code{featureData} slot contains row information which are usually ensemebl
-gene ID or gene symbols.}
+by sample matrix with 22431 genes and 259 samples from different 
+stages of mouse embryonic development (zygote, 2 cell, 4 cell, 
+8 cell, 16 cell, early blastocyst, mid blsastocyst and late 
+blastocyst stages). \code{phenoData} slot contains meta information 
+of the samples on the development stage the cell comes from and the 
+id of the embryo it belongs to. \code{featureData} slot contains row 
+information which are usually ensemebl gene ID or gene symbols.}
 \usage{
 MouseDengESC
 }
@@ -20,8 +20,8 @@ MouseDengESC
 Returns an ExpressionSet object for the sequencing data
 }
 \description{
-A dataset containing single cell RNA-seq data from mouse embryonic stem cells
-due to Deng et al (2014)
+A dataset containing single cell RNA-seq data from mouse 
+embryonic stem cells due to Deng et al (2014)
 }
 \examples{
 data(MouseDengESC)
@@ -31,8 +31,9 @@ Biobase::featureData(MouseDengESC)
 }
 \references{
 Qiaolin Deng, Daniel Ramsköld, Björn Reinius, Rickard Sandberg.
-Single-Cell RNA-Seq Reveals Dynamic, Random Monoallelic Gene Expression in Mammalian Cells.
-Science, Vol. 343, Issue 6167, pp. 193-196, DOI: 10.1126/science.1245316
+Single-Cell RNA-Seq Reveals Dynamic, Random Monoallelic Gene Expression 
+in Mammalian Cells. Science, Vol. 343, Issue 6167, pp. 193-196, 
+DOI: 10.1126/science.1245316
 }
 \keyword{datasets}
 
