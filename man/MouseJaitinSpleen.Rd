@@ -31,8 +31,9 @@ Biobase::featureData(MouseJaitinSpleen)
 Diego Adhemar Jaitin, Ephraim Kenigsberg, Hadas Keren-Shaul,
 Naama Elefant, Franziska Paul, Irina Zaretsky, Alexander Mildner,
 Nadav Cohen, Steffen Jung, Amos Tanay, Ido Amit. Massively Parallel
-Single-Cell RNA-Seq for Marker-Free Decomposition of Tissues into Cell Types.
-Science 343, 776-779 (2014) DOI: 10.1126/science.1247651
+Single-Cell RNA-Seq for Marker-Free Decomposition of Tissues 
+into Cell Types. Science 343, 776-779 (2014) 
+DOI: 10.1126/science.1247651
 }
 \keyword{datasets}
 

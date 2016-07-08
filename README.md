@@ -27,24 +27,24 @@ We present the steps to load the expression data and sample and feature metadata
 using the example of the Deng et al (2014) data.
 
 ```
-data("Deng2014MouseESC")
+data("MouseDengESC")
 ```
 RNA-seq counts or expression data
 
 ```
-exprs(Deng2014MouseESC)
+exprs(MouseDengESC)
 ```
 
 The sample metadata
 
 ```
-pData(Deng2014MouseESC)
+pData(MouseDengESC)
 ```
 
 The feature metadata
 
 ```
-featureData(Deng2014MouseESC)
+featureData(MouseDengESC)
 ```
 
 To load the other two datasets due to Jaitin et al (2014) and Zeisel et al (2015).
@@ -56,6 +56,7 @@ data("MouseZeiselBrain")
 
 The processing steps for expression data, sample and feature metadata extraction 
 for these two datasets is similar as above.
+
 
 ## Licenses
 

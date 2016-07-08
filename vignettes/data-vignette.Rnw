@@ -90,8 +90,8 @@ stages). The data in this package includes read counts of $22,431$ genes (after 
 (GEO:GSE45719: see \url{http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE45719})
 
 <<deng_data, echo=TRUE, eval=TRUE>>=
-data("Deng2014MouseESC")
-Deng2014MouseESC
+data("MouseDengESC")
+MouseDengESC
 @ %def
 
 
@@ -99,7 +99,7 @@ Expression data for the first few genes (along rows) and the first few
 cells in the sample (along columns):
 
 <<deng_exprs, echo=TRUE, eval=TRUE>>=
-counts_deng <- Biobase::exprs(Deng2014MouseESC)
+counts_deng <- Biobase::exprs(MouseDengESC)
 head(counts_deng[,1:5])
 @ %def
 
@@ -108,7 +108,7 @@ Phenotype or metadata sample information are stored in the `phenoData` slot and 
 stage of each cell can be extracted as follows:
 
 <<deng_pdata, echo=TRUE, eval=TRUE>>=
-pheno_deng <- Biobase::pData(Deng2014MouseESC)
+pheno_deng <- Biobase::pData(MouseDengESC)
 colnames(pheno_deng)
 table(pheno_deng$cell_type)
 @ %def
@@ -117,7 +117,7 @@ table(pheno_deng$cell_type)
 Gene information are stored in `featureData` slot:
 
 <<deng_features, echo=TRUE, eval=TRUE>>=
-genes_deng <- Biobase::fData(Deng2014MouseESC)
+genes_deng <- Biobase::fData(MouseDengESC)
 head(genes_deng)
 @ %def
 
