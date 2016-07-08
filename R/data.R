@@ -50,7 +50,7 @@
 #' Single-Cell RNA-Seq Reveals Dynamic, Random Monoallelic Gene Expression 
 #' in Mammalian Cells. Science, Vol. 343, Issue 6167, pp. 193-196, 
 #' DOI: 10.1126/science.1245316
-	"Deng2014MouseESC"
+	"MouseDengESC"
 
 #' Single cell RNA seq data from mouse cortex and hippocampus 
 #' due to Zeisel et al (2015)
